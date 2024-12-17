@@ -7,9 +7,9 @@
     <style>
 
         iframe {
-            width: 70vw;
-            height: 70vh;
-            border: none;
+            width: 482px;
+            height: 412px;
+            border: 1;
         }
       
       .centering {
@@ -63,41 +63,16 @@
     </style>
 </head>
 <body>
-      <!-- Navigation Menu -->
-    <nav>
-        <a href="./">Home</a>
- <div class="dropdown">
-            <span class="dropbtn"> Single Player Games &#9662;</span>
-            <div class="dropdown-content">
-                <!-- Fixed: Call embed.html with query parameters -->
-                <a href="./embed.html?game=rush" target="_self">Rush</a>
-                <a href="./embed.html?game=memory" target="_self">Memory Match</a>
-                <a href="./embed.html?game=phantom" target="_self">Phantom</a>
-                <a href="./embed.html?game=scratchy2" target="_self">Scratchy Adventure 2</a>
-                <a href="./embed.html?game=geometry" target="_self">Geometry</a>
-                <a href="./embed.html?game=ballphy" target="_self">Ball Physics</a>
-                <a href="./embed.html?game=mario" target="_self">Mario</a>
-                <a href="./embed.html?game=evan" target="_self">Evanescent</a>
-                <a href="./embed.html?game=gettingover" target="_self">Getting Over</a>
-                <a href="./embed.html?game=plantvszombie" target="_self">Plants Vs Zombies</a>
+    <!-- Navigation Menu -->
+  <div id="nav"></div> <!-- Placeholder for the header -->
 
-            </div>
-      </div>
-        <div class="dropdown">
-            <span class="dropbtn">Cloud Games &#9662;</span>
-            <div class="dropdown-content">
-                <!-- Fixed: Call embed.html with query parameters -->
-                <a href="./embed.html?game=taco1" target="_self">Taco 1</a>
-                <a href="./embed.html?game=taco2" target="_self">Taco 2</a>
-                <a href="./embed.html?game=taco3" target="_self">Taco 3</a>
-                <a href="./embed.html?game=minecraft" target="_self">Minecraft</a>
-                <a href="./embed.html?game=terraria" target="_self">Terraria</a>
-                <a href="./embed.html?game=appelonline" target="_self">Apple Online</a>
-                <a href="./embed.html?game=mmellee" target="_self">Monster Melee</a>
-                <a href="./embed.html?game=simprpg" target="_self">Simple RPG</a>
-            </div>
-        </div>
-    </nav>
+  <script>
+    // Load and insert the HTML file into the placeholder
+    fetch('./nav.html')
+      .then(response => response.text())
+      .then(data => document.getElementById('nav').innerHTML = data)
+      .catch(error => console.error('Error loading the header:', error));
+  </script>
     <script>
         // Fetch the game parameter from the URL
         const params = new URLSearchParams(window.location.search);
@@ -161,6 +136,12 @@
             case "plantvszombie":
                 embedSrc = "https://turbowarp.org/1111668077/embed";
                 break;
+            case "magiccat1":
+                embedSrc = "https://turbowarp.org/1111673953/embed";
+                break;
+            case "magiccat2":
+                embedSrc = "https://turbowarp.org/1111673729/embed";
+                break;
             
             default:
                 document.write("<h2>No valid game selected!</h2>");
@@ -169,7 +150,7 @@
 
         // Dynamically add iframe
         if (embedSrc) {
-            document.write(`<div class="centering"><iframe src="${embedSrc}" allowtransparency="true" allowfullscreen></iframe></div>`);
+            document.write(`<div class="centering"><iframe src="${embedSrc}" allowtransparency="false" allowfullscreen></iframe></div>`);
         }
     </script>
 </body>
