@@ -20,7 +20,7 @@
             background-color: #2c3e50;
             padding: 10px 20px;
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-end; /* Aligns items to the right */
         }
         nav a, .dropbtn {
             color: white;
@@ -60,6 +60,20 @@
       <!-- Navigation Menu -->
     <nav>
         <a href="#">Home</a>
+ <div class="dropdown">
+            <span class="dropbtn"> Single Player Games &#9662;</span>
+            <div class="dropdown-content">
+                <!-- Fixed: Call embed.html with query parameters -->
+                <a href="./embed.html?game=rush" target="_self">Rush</a>
+                <a href="./embed.html?game=memory" target="_self">Memory Match</a>
+                <a href="./embed.html?game=phantom" target="_self">Phantom</a>
+                <a href="./embed.html?game=scratchy2" target="_self">Scratchy Adventure 2</a>
+                <a href="./embed.html?game=geometry" target="_self">Geometry</a>
+                <a href="./embed.html?game=ballphy" target="_self">Ball Physics</a>
+                <a href="./embed.html?game=mario" target="_self">Mario</a>
+                <a href="./embed.html?game=evan" target="_self">Evanescent</a>
+            </div>
+      </div>
         <div class="dropdown">
             <span class="dropbtn">Cloud Games &#9662;</span>
             <div class="dropdown-content">
@@ -115,22 +129,22 @@
                 embedSrc = "https://turbowarp.org/1110082136/embed";
                 break;
             case "phantom":
-                embedSrc = "https://turbowarp.org/1110115133/embed";
+                embedSrc = "https://turbowarp.org/1110101171/embed";
                 break;
             case "scratchy2":
-                embedSrc = "https://turbowarp.org/1110042110/embed"; // Replace with actual link
+                embedSrc = "https://turbowarp.org/1110102127/embed"; // Replace with actual link
                 break;
             case "geometry":
-                embedSrc = "https://turbowarp.org/1110150944/embed";
+                embedSrc = "https://turbowarp.org/1110115588/embed";
                 break;
             case "ballphy":
-                embedSrc = "https://turbowarp.org/1111153267/embed";
+                embedSrc = "https://turbowarp.org/1110116765/embed";
                 break;
             case "mario":
-                embedSrc = "https://turbowarp.org/1111154392/embed";
+                embedSrc = "https://turbowarp.org/1110136854/embed";
                 break;
             case "evan":
-                embedSrc = "https://turbowarp.org/1111612005/embed";
+                embedSrc = "https://turbowarp.org/1111611933/embed";
                 break;
             default:
                 document.write("<h2>No valid game selected!</h2>");
