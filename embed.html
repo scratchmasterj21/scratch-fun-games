@@ -13,7 +13,7 @@
         }
       
       .centering {
-                display: flex;
+                display:  flex;
 
         justify-content: center; /* Center horizontally */
         align-items: center; /* Center vertically */
@@ -133,12 +133,16 @@
                 break;
             case "mario":
                 embedSrc = "https://turbowarp.org/1110136854/embed";
+                imgSrcTouch="https://wallpapers.com/images/featured/blank-white-7sn5o1woonmklx1h.jpg"
+
                 break;
             case "evan":
                 embedSrc = "https://turbowarp.org/1111611933/embed";
                 break;
             case "gettingover":
                 embedSrc = "https://turbowarp.org/1111640053/embed";
+               imgSrcTouch="https://wallpapers.com/images/featured/blank-white-7sn5o1woonmklx1h.jpg"
+
                 break;
             case "plantvszombie":
                 embedSrc = "https://turbowarp.org/1111668077/embed";
@@ -158,7 +162,9 @@
         // Dynamically add iframe
         if (embedSrc) {
             document.write(`<div class="centering"><iframe src="${embedSrc}" allowtransparency="true" allowfullscreen></iframe></div>`);
-            document.write(`<div class="centering"><p>Controls</p><br/>
+            document.write(`<div class="centering"><p>Controls</p></div>`);
+
+            document.write(`<div class="centering">
             <img src="${imgSrcKeyboard}" alt="Scratch Cat Logo" width="72" height="72" >
             <img src="${imgSrcMouse}" alt="Scratch Cat Logo" width="72" height="72" >
             <img src="${imgSrcTouch}" alt="Scratch Cat Logo" width="72" height="72" >
