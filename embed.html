@@ -80,21 +80,23 @@
         const game = params.get("game");
 
         let embedSrc = "";
-                embedSrc = "https://turbowarp.org/1110044171/embed";
-                imgSrcKeyboard = "https://media.istockphoto.com/id/1745014836/vector/keyboard-icon-vector-illustration.jpg?s=612x612&w=0&k=20&c=LYa0cqdTp_T2CIufUEo1_bI48zhOdasUNkF7iu2qXCc=";
-                imgSrcMouse = "https://cdn4.iconfinder.com/data/icons/computer-58/64/mouse-computer-pointer-control-512.png";
-                imgSrcTablet = "https://static.vecteezy.com/system/resources/previews/006/900/746/non_2x/tablet-screen-icon-tablet-mockup-free-vector.jpg";
+            imgSrcKeyboard = "https://media.istockphoto.com/id/1745014836/vector/keyboard-icon-vector-illustration.jpg?s=612x612&w=0&k=20&c=LYa0cqdTp_T2CIufUEo1_bI48zhOdasUNkF7iu2qXCc=";
+            imgSrcMouse = "https://cdn4.iconfinder.com/data/icons/computer-58/64/mouse-computer-pointer-control-512.png";
+            imgSrcTouch = "https://cdn-icons-png.flaticon.com/512/10479/10479814.png";
         // Map the game parameter to an embed source
         switch (game) {
             case "taco1":
-                imgSrcTablet="https://wallpapers.com/images/featured/blank-white-7sn5o1woonmklx1h.jpg"
+                embedSrc = "https://turbowarp.org/1110044171/embed";  
+                imgSrcTouch="https://wallpapers.com/images/featured/blank-white-7sn5o1woonmklx1h.jpg"
 
             break;
             case "taco2":
                 embedSrc = "https://turbowarp.org/1110114426/embed";
+                imgSrcTouch="https://wallpapers.com/images/featured/blank-white-7sn5o1woonmklx1h.jpg"
                 break;
             case "taco3":
                 embedSrc = "https://turbowarp.org/1110115133/embed";
+                imgSrcTouch="https://wallpapers.com/images/featured/blank-white-7sn5o1woonmklx1h.jpg"
                 break;
             case "minecraft":
                 embedSrc = "https://turbowarp.org/1110042110/embed"; // Replace with actual link
@@ -159,7 +161,7 @@
             document.write(`<div class="centering"><p>Controls</p><br/>
             <img src="${imgSrcKeyboard}" alt="Scratch Cat Logo" width="72" height="72" >
             <img src="${imgSrcMouse}" alt="Scratch Cat Logo" width="72" height="72" >
-            <img src="${imgSrcTablet}" alt="Scratch Cat Logo" width="72" height="72" >
+            <img src="${imgSrcTouch}" alt="Scratch Cat Logo" width="72" height="72" >
 </div>`);
 
         }
