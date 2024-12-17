@@ -13,7 +13,8 @@
         }
       
       .centering {
-        display: grid;
+                display: flex;
+
         justify-content: center; /* Center horizontally */
         align-items: center; /* Center vertically */
       }
@@ -79,14 +80,14 @@
         const game = params.get("game");
 
         let embedSrc = "";
-
+                embedSrc = "https://turbowarp.org/1110044171/embed";
+                imgSrcKeyboard = "https://media.istockphoto.com/id/1745014836/vector/keyboard-icon-vector-illustration.jpg?s=612x612&w=0&k=20&c=LYa0cqdTp_T2CIufUEo1_bI48zhOdasUNkF7iu2qXCc=";
+                imgSrcMouse = "https://cdn4.iconfinder.com/data/icons/computer-58/64/mouse-computer-pointer-control-512.png";
+                imgSrcTablet = "https://static.vecteezy.com/system/resources/previews/006/900/746/non_2x/tablet-screen-icon-tablet-mockup-free-vector.jpg";
         // Map the game parameter to an embed source
         switch (game) {
             case "taco1":
-                embedSrc = "https://turbowarp.org/1110044171/embed";
-                imgSrcKeyboard = "https://media.istockphoto.com/id/1745014836/vector/keyboard-icon-vector-illustration.jpg?s=612x612&w=0&k=20&c=LYa0cqdTp_T2CIufUEo1_bI48zhOdasUNkF7iu2qXCc=";
-                imgSrcMouse = "https://media.istockphoto.com/id/1745014836/vector/keyboard-icon-vector-illustration.jpg?s=612x612&w=0&k=20&c=LYa0cqdTp_T2CIufUEo1_bI48zhOdasUNkF7iu2qXCc=";
-                imgSrcTablet = "https://media.istockphoto.com/id/1745014836/vector/keyboard-icon-vector-illustration.jpg?s=612x612&w=0&k=20&c=LYa0cqdTp_T2CIufUEo1_bI48zhOdasUNkF7iu2qXCc=";
+                imgSrcTablet="https://wallpapers.com/images/featured/blank-white-7sn5o1woonmklx1h.jpg"
 
             break;
             case "taco2":
@@ -155,7 +156,10 @@
         // Dynamically add iframe
         if (embedSrc) {
             document.write(`<div class="centering"><iframe src="${embedSrc}" allowtransparency="true" allowfullscreen></iframe></div>`);
-            document.write(`<div class="centering">    <img src="https://juniortech.org/wp-content/uploads/2020/09/Scratch-cat-logo-300x300px.png" alt="Scratch Cat Logo" width="300" height="300" >
+            document.write(`<div class="centering"><p>Controls</p><br/>
+            <img src="${imgSrcKeyboard}" alt="Scratch Cat Logo" width="72" height="72" >
+            <img src="${imgSrcMouse}" alt="Scratch Cat Logo" width="72" height="72" >
+            <img src="${imgSrcTablet}" alt="Scratch Cat Logo" width="72" height="72" >
 </div>`);
 
         }
