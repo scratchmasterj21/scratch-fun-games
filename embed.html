@@ -9,7 +9,7 @@
         iframe {
             width: 482px;
             height: 412px;
-            border: 1;
+            border: none;
         }
       
       .centering {
@@ -150,7 +150,7 @@
 
         // Dynamically add iframe
         if (embedSrc) {
-            document.write(`<div class="centering"><iframe src="${embedSrc}" allowtransparency="false" allowfullscreen></iframe></div>`);
+            document.write(`<div class="centering"><iframe src="${embedSrc}" allowtransparency="true" allowfullscreen></iframe></div>`);
         }
     </script>
 </body>
