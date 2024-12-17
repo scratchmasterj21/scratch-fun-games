@@ -56,6 +56,29 @@
             display: block;
         }
     </style>
+  <script defer>function toggleDropdown(dropdownId) {
+    const dropdown = document.getElementById(dropdownId);
+
+    // Close all dropdowns
+    document.querySelectorAll('.dropdown-content').forEach(content => {
+        if (content !== dropdown) {
+            content.style.display = 'none';
+        }
+    });
+
+    // Toggle the current dropdown
+    dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+}
+
+// Close dropdowns when clicking outside
+window.onclick = function (event) {
+    if (!event.target.matches('.dropbtn')) {
+        document.querySelectorAll('.dropdown-content').forEach(content => {
+            content.style.display = 'none';
+        });
+    }
+};
+</script>
 </head>
 <body>
     <!-- Navigation Menu -->
