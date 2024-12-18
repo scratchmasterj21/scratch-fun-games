@@ -83,38 +83,53 @@
             imgSrcKeyboard = "https://media.istockphoto.com/id/1745014836/vector/keyboard-icon-vector-illustration.jpg?s=612x612&w=0&k=20&c=LYa0cqdTp_T2CIufUEo1_bI48zhOdasUNkF7iu2qXCc=";
             imgSrcMouse = "https://cdn4.iconfinder.com/data/icons/computer-58/64/mouse-computer-pointer-control-512.png";
             imgSrcTouch = "https://cdn-icons-png.flaticon.com/512/10479/10479814.png";
+            maxPlayer = 1;
         // Map the game parameter to an embed source
         switch (game) {
             case "taco1":
                 embedSrc = "https://turbowarp.org/1110044171/embed?cloud_host=wss://tide-pushy-consonant.glitch.me";  
                 imgSrcTouch="https://wallpapers.com/images/featured/blank-white-7sn5o1woonmklx1h.jpg"
+                 maxPlayer = 8;
+
 
             break;
             case "taco2":
                 embedSrc = "https://turbowarp.org/1110114426/embed?cloud_host=wss://tide-pushy-consonant.glitch.me";
                 imgSrcTouch="https://wallpapers.com/images/featured/blank-white-7sn5o1woonmklx1h.jpg"
+                maxPlayer = 8;
+
                 break;
             case "taco3":
                 embedSrc = "https://turbowarp.org/1110115133/embed?cloud_host=wss://tide-pushy-consonant.glitch.me";
                 imgSrcTouch="https://wallpapers.com/images/featured/blank-white-7sn5o1woonmklx1h.jpg"
+                 maxPlayer = 8;
                 break;
             case "minecraft":
                 embedSrc = "https://turbowarp.org/1110042110/embed?cloud_host=wss://tide-pushy-consonant.glitch.me"; // Replace with actual link
                 imgSrcTouch="https://wallpapers.com/images/featured/blank-white-7sn5o1woonmklx1h.jpg"
+                maxPlayer = 100;
 
                 break;
             case "terraria":
                 embedSrc = "https://turbowarp.org/1110150944/embed?cloud_host=wss://tide-pushy-consonant.glitch.me";
                 imgSrcTouch="https://wallpapers.com/images/featured/blank-white-7sn5o1woonmklx1h.jpg"
-                break;
+                maxPlayer = 8;
+                 break;
+            
             case "appelonline":
                 embedSrc = "https://turbowarp.org/1111153267/embed?cloud_host=wss://tide-pushy-consonant.glitch.me";
+                maxPlayer = 2;
                 break;
             case "mmellee":
                 embedSrc = "https://turbowarp.org/1111154392/embed?cloud_host=wss://tide-pushy-consonant.glitch.me";
                 break;
             case "simprpg":
                 embedSrc = "https://turbowarp.org/1111612005/embed?cloud_host=wss://tide-pushy-consonant.glitch.me";
+                maxPlayer = 2;
+                break;
+            case "tag":
+                embedSrc = "https://turbowarp.org/1110047228/embed?cloud_host=wss://tide-pushy-consonant.glitch.me";
+                maxPlayer = 5;
                 break;
             case "rush":
                 embedSrc = "https://turbowarp.org/1110082316/embed";
@@ -170,6 +185,7 @@
         // Dynamically add iframe
         if (embedSrc) {
             document.write(`<div class="centering"><iframe src="${embedSrc}" allowtransparency="true" allowfullscreen></iframe></div>`);
+            document.write(`<div class="centering"><p>Max Players: ${maxPlayer}</p></div>`);
             document.write(`<div class="centering"><p>Controls</p></div>`);
 
             document.write(`<div class="centering">
