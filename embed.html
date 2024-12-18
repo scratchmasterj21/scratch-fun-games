@@ -84,6 +84,7 @@
             imgSrcMouse = "https://cdn4.iconfinder.com/data/icons/computer-58/64/mouse-computer-pointer-control-512.png";
             imgSrcTouch = "https://cdn-icons-png.flaticon.com/512/10479/10479814.png";
             maxPlayer = 1;
+            minPlayer = 1
         // Map the game parameter to an embed source
         switch (game) {
             case "taco1":
@@ -122,13 +123,18 @@
                 break;
             case "mmellee":
                 embedSrc = "https://turbowarp.org/1111154392/embed?cloud_host=wss://tide-pushy-consonant.glitch.me";
+                minPlayer = 2
+                maxPlayer = 10;
                 break;
+
             case "simprpg":
                 embedSrc = "https://turbowarp.org/1111612005/embed?cloud_host=wss://tide-pushy-consonant.glitch.me";
-                maxPlayer = 2;
+                minPlayer = 2
+                maxPlayer = 6;
                 break;
             case "tag":
                 embedSrc = "https://turbowarp.org/1110047228/embed?cloud_host=wss://tide-pushy-consonant.glitch.me";
+                minPlayer = 2
                 maxPlayer = 5;
                 break;
             case "rush":
@@ -185,7 +191,7 @@
         // Dynamically add iframe
         if (embedSrc) {
             document.write(`<div class="centering"><iframe src="${embedSrc}" allowtransparency="true" allowfullscreen></iframe></div>`);
-            document.write(`<div class="centering"><p>Max Players: ${maxPlayer}</p></div>`);
+            document.write(`<div class="centering"><p>Min Player: ${minPlayer} | Max Players: ${maxPlayer}</p></div>`);
             document.write(`<div class="centering"><p>Controls</p></div>`);
 
             document.write(`<div class="centering">
