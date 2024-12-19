@@ -237,12 +237,15 @@ case "rush":
                 username = prompt("Enter your username to start the game:");
                 if (username === null) {
                     // User canceled the prompt
-                    return;
-                }
+                  finalEmbedding(`${embedSrc}`);                }
             } while (!username.trim());
 
-            const finalEmbedSrc = `${embedSrc}&username=${encodeURIComponent(username)}`;
-            contentDiv.innerHTML = `
+            finalEmbedding(`${embedSrc}&username=${encodeURIComponent(username)}`);
+
+        }
+      
+        function finalEmbedding(finalEmbedSrc) {
+                contentDiv.innerHTML = `
                     <div class="centering"><h1>Welcome to Scratch Fun Games!</h1></div>
 
                 <div class="centering"><p>
