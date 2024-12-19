@@ -3,99 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
     <title>Scratch Fun Games</title>
     <style>
-        /* Basic Styles */
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-
-        }
-      
-      .centering {
-        display: grid;
-        justify-content: center; /* Center horizontally */
-        align-items: center; /* Center vertically */
-      }
-        nav {
-            background-color: #2c3e50;
-            padding: 10px 20px;
-            display: flex;
-            justify-content: center; /* Aligns items to the right */
-        }
-        nav a, .dropbtn {
-            color: white;
-            text-decoration: none;
-            margin: 0 10px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-
-        /* Dropdown Styles */
-/* General Dropdown Styles */
-.dropdown {
-    position: relative;
-    display: inline-block;
-}
-
-.dropbtn {
-    cursor: pointer;
-    background-color: #4CAF50;
-    color: white;
-    padding: 8px 16px;
-    text-align: center;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 200px;
-    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-    z-index: 1;
-}
-
-.dropdown:hover .dropdown-content,
-.dropdown .dropdown-content:hover {
-    display: block;
-}
-
-.dropdown-content a {
-    text-decoration: none;
-    color: black;
-    padding: 8px 12px;
-    display: block;
-}
-
-/* Nested Dropdown Styles */
-.nested-dropdown {
-    position: relative;
-}
-
-.nested-dropbtn {
-    cursor: pointer;
-    display: block;
-    padding: 8px 12px;
-}
-
-.nested-dropdown-content {
-    display: none;
-    position: absolute;
-    left: 100%;
-    top: 0;
-    background-color: #f1f1f1;
-    min-width: 200px;
-    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-    z-index: 1;
-}
-
-.nested-dropdown:hover .nested-dropdown-content {
-    display: block;
-}
-.nested-dropdown-content a:hover {
-    background-color: #dcdcdc; /* Slightly darker gray for nested items */
-    color: #4CAF50;
-}
+ 
     </style>
   <script defer>function toggleDropdown(dropdownId) {
     const dropdown = document.getElementById(dropdownId);
