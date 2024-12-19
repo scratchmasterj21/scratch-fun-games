@@ -5,30 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Scratch Fun Games</title>
     <style>
-
         iframe {
             width: 70vw;
             height: 70vh;
             border: none;
         }
-      
-      .centering {
-                display:  flex;
 
-        justify-content: center; /* Center horizontally */
-        align-items: center; /* Center vertically */
-      }
-        /* Basic Styles */
+        .centering {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+        }
+
         body {
             margin: 0;
             font-family: Arial, sans-serif;
         }
+
+        input, button {
+            padding: 10px;
+            margin: 5px;
+            font-size: 16px;
+        }
+
         nav {
             background-color: #2c3e50;
             padding: 10px 20px;
             display: flex;
-            justify-content: center; /* Aligns items to the right */
+            justify-content: center;
         }
+
         nav a, .dropbtn {
             color: white;
             text-decoration: none;
@@ -36,127 +44,100 @@
             font-size: 16px;
             cursor: pointer;
         }
-
-        /* Dropdown Styles */
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: #34495e;
-            min-width: 160px;
-            z-index: 1;
-        }
-        .dropdown-content a {
-            color: white;
-            padding: 10px 15px;
-            display: block;
-            text-decoration: none;
-        }
-        .dropdown-content a:hover {
-            background-color: #1abc9c;
-        }
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
     </style>
 </head>
 <body>
-    <!-- Navigation Menu -->
-  <div id="nav"></div> <!-- Placeholder for the header -->
+    <div id="nav"></div> <!-- Placeholder for the header -->
 
-  <script>
-    // Load and insert the HTML file into the placeholder
-    fetch('./nav.html')
-      .then(response => response.text())
-      .then(data => document.getElementById('nav').innerHTML = data)
-      .catch(error => console.error('Error loading the header:', error));
-  </script>
+    <script>
+        // Load and insert the HTML file into the placeholder
+        fetch('./nav.html')
+            .then(response => response.text())
+            .then(data => document.getElementById('nav').innerHTML = data)
+            .catch(error => console.error('Error loading the header:', error));
+    </script>
+
+    <div id="content" class="centering">
+        <h1>Welcome to Scratch Fun Games!</h1>
+    </div>
+
     <script>
         // Fetch the game parameter from the URL
         const params = new URLSearchParams(window.location.search);
         const game = params.get("game");
 
         let embedSrc = "";
-            imgSrcKeyboard = "https://media.istockphoto.com/id/1745014836/vector/keyboard-icon-vector-illustration.jpg?s=612x612&w=0&k=20&c=LYa0cqdTp_T2CIufUEo1_bI48zhOdasUNkF7iu2qXCc=";
-            imgSrcMouse = "https://cdn4.iconfinder.com/data/icons/computer-58/64/mouse-computer-pointer-control-512.png";
-            imgSrcTouch = "https://cdn-icons-png.flaticon.com/512/10479/10479814.png";
-            maxPlayer = 1;
-            minPlayer = 1
-        // Map the game parameter to an embed source
+        let imgSrcKeyboard = "https://media.istockphoto.com/id/1745014836/vector/keyboard-icon-vector-illustration.jpg?s=612x612&w=0&k=20&c=LYa0cqdTp_T2CIufUEo1_bI48zhOdasUNkF7iu2qXCc=";
+        let imgSrcMouse = "https://cdn4.iconfinder.com/data/icons/computer-58/64/mouse-computer-pointer-control-512.png";
+        let imgSrcTouch = "https://cdn-icons-png.flaticon.com/512/10479/10479814.png";
+        let maxPlayer = 1;
+        let minPlayer = 1;
+
+        const cloudGames = [
+            "taco1", "taco2", "taco3",
+            "minecraftcreative1", "minecraftcreative2", "minecraftsurvival1", "minecraftsurvival2",
+            "terraria", "appelonline", "mmellee", "simprpg", "tag1", "tag2"
+        ];
+
+        // Map games to embed sources and metadata
         switch (game) {
             case "taco1":
-                embedSrc = "https://turbowarp.org/1110044171/embed?cloud_host=wss://tide-pushy-consonant.glitch.me";  
-                imgSrcTouch="https://wallpapers.com/images/featured/blank-white-7sn5o1woonmklx1h.jpg"
-                 maxPlayer = 8;
-
-
-            break;
+                embedSrc = "https://turbowarp.org/1110044171/embed?cloud_host=wss://tide-pushy-consonant.glitch.me";
+                maxPlayer = 8;
+                break;
             case "taco2":
                 embedSrc = "https://turbowarp.org/1110114426/embed?cloud_host=wss://tide-pushy-consonant.glitch.me";
-                imgSrcTouch="https://wallpapers.com/images/featured/blank-white-7sn5o1woonmklx1h.jpg"
                 maxPlayer = 8;
-
                 break;
             case "taco3":
                 embedSrc = "https://turbowarp.org/1110115133/embed?cloud_host=wss://tide-pushy-consonant.glitch.me";
-                imgSrcTouch="https://wallpapers.com/images/featured/blank-white-7sn5o1woonmklx1h.jpg"
-                 maxPlayer = 8;
+                maxPlayer = 8;
                 break;
             case "minecraftcreative1":
-                embedSrc = "https://turbowarp.org/1112191591/embed?cloud_host=wss://tide-pushy-consonant.glitch.me"; // Replace with actual link
-                imgSrcTouch="https://wallpapers.com/images/featured/blank-white-7sn5o1woonmklx1h.jpg"
+                embedSrc = "https://turbowarp.org/1112191591/embed?cloud_host=wss://tide-pushy-consonant.glitch.me";
                 maxPlayer = 10;
                 break;
             case "minecraftcreative2":
-                embedSrc = "https://turbowarp.org/1112196866/embed?cloud_host=wss://tide-pushy-consonant.glitch.me"; // Replace with actual link
-                imgSrcTouch="https://wallpapers.com/images/featured/blank-white-7sn5o1woonmklx1h.jpg"
+                embedSrc = "https://turbowarp.org/1112196866/embed?cloud_host=wss://tide-pushy-consonant.glitch.me";
                 maxPlayer = 10;
                 break;
             case "minecraftsurvival1":
-                embedSrc = "https://turbowarp.org/1112195433/embed?cloud_host=wss://tide-pushy-consonant.glitch.me"; // Replace with actual link
-                imgSrcTouch="https://wallpapers.com/images/featured/blank-white-7sn5o1woonmklx1h.jpg"
+                embedSrc = "https://turbowarp.org/1112195433/embed?cloud_host=wss://tide-pushy-consonant.glitch.me";
                 maxPlayer = 10;
                 break;
             case "minecraftsurvival2":
-                embedSrc = "https://turbowarp.org/1112196236/embed?cloud_host=wss://tide-pushy-consonant.glitch.me"; // Replace with actual link
-                imgSrcTouch="https://wallpapers.com/images/featured/blank-white-7sn5o1woonmklx1h.jpg"
+                embedSrc = "https://turbowarp.org/1112196236/embed?cloud_host=wss://tide-pushy-consonant.glitch.me";
                 maxPlayer = 10;
                 break;
             case "terraria":
                 embedSrc = "https://turbowarp.org/1110150944/embed?cloud_host=wss://tide-pushy-consonant.glitch.me";
-                imgSrcTouch="https://wallpapers.com/images/featured/blank-white-7sn5o1woonmklx1h.jpg"
                 maxPlayer = 8;
-                 break;
-            
+                break;
             case "appelonline":
                 embedSrc = "https://turbowarp.org/1111153267/embed?cloud_host=wss://tide-pushy-consonant.glitch.me";
                 maxPlayer = 2;
                 break;
             case "mmellee":
                 embedSrc = "https://turbowarp.org/1111154392/embed?cloud_host=wss://tide-pushy-consonant.glitch.me";
-                minPlayer = 2
+                minPlayer = 2;
                 maxPlayer = 10;
                 break;
-
             case "simprpg":
                 embedSrc = "https://turbowarp.org/1111612005/embed?cloud_host=wss://tide-pushy-consonant.glitch.me";
-                minPlayer = 2
+                minPlayer = 2;
                 maxPlayer = 6;
                 break;
             case "tag1":
                 embedSrc = "https://turbowarp.org/1110047228/embed?cloud_host=wss://tide-pushy-consonant.glitch.me";
-                minPlayer = 2
+                minPlayer = 2;
                 maxPlayer = 5;
                 break;
             case "tag2":
                 embedSrc = "https://turbowarp.org/1112600204/embed?cloud_host=wss://tide-pushy-consonant.glitch.me";
-                minPlayer = 2
+                minPlayer = 2;
                 maxPlayer = 5;
                 break;
-            case "rush":
+case "rush":
                 embedSrc = "https://turbowarp.org/1110082316/embed";
                 break;
             case "memory":
@@ -213,25 +194,54 @@
             default:
                 document.write("<h2>No valid game selected!</h2>");
                 break;
-        }
-
-        // Dynamically add iframe
-        if (embedSrc) {
-            document.write(`<div class="centering"><iframe src="${embedSrc}" allowtransparency="true" allowfullscreen></iframe></div>`);
-            document.write(`<div class="centering"><p>Min Player: ${minPlayer} | Max Players: ${maxPlayer}</p></div>`);
-            document.write(`<div class="centering"><p>Controls</p></div>`);
-
-            document.write(`<div class="centering">
-            <img src="${imgSrcKeyboard}" alt="Scratch Cat Logo" width="72" height="72" >
-            <img src="${imgSrcMouse}" alt="Scratch Cat Logo" width="72" height="72" >
-            <img src="${imgSrcTouch}" alt="Scratch Cat Logo" width="72" height="72" >
-</div>`);
 
         }
-      
-      
+
+        // Render the game container
+        const contentDiv = document.getElementById("content");
+
+        if (!embedSrc) {
+            contentDiv.innerHTML += "<h2>No valid game selected!</h2>";
+        } else if (cloudGames.includes(game)) {
+            // For cloud games, prompt for username
+            contentDiv.innerHTML += `
+                <label for="usernameInput">Enter Your Username:</label>
+                <input type="text" id="usernameInput" placeholder="Enter username" required />
+                <button onclick="loadCloudGame()">Play Game</button>
+            `;
+        } else {
+            // For non-cloud games, embed directly
+            loadGame();
+        }
+
+        function loadCloudGame() {
+            const username = document.getElementById("usernameInput").value.trim();
+            if (!username) {
+                alert("Please enter a valid username!");
+                return;
+            }
+
+            const finalEmbedSrc = `${embedSrc}&username=${encodeURIComponent(username)}`;
+            contentDiv.innerHTML = `
+                <iframe src="${finalEmbedSrc}" allowtransparency="true" allowfullscreen></iframe>
+                <p>Min Player: ${minPlayer} | Max Players: ${maxPlayer}</p>
+                <p>Controls:</p>
+                <img src="${imgSrcKeyboard}" alt="Keyboard Icon" width="72" height="72" />
+                <img src="${imgSrcMouse}" alt="Mouse Icon" width="72" height="72" />
+                <img src="${imgSrcTouch}" alt="Touch Icon" width="72" height="72" />
+            `;
+        }
+
+        function loadGame() {
+            contentDiv.innerHTML = `
+                <iframe src="${embedSrc}" allowtransparency="true" allowfullscreen></iframe>
+                <p>Min Player: ${minPlayer} | Max Players: ${maxPlayer}</p>
+                <p>Controls:</p>
+                <img src="${imgSrcKeyboard}" alt="Keyboard Icon" width="72" height="72" />
+                <img src="${imgSrcMouse}" alt="Mouse Icon" width="72" height="72" />
+                <img src="${imgSrcTouch}" alt="Touch Icon" width="72" height="72" />
+            `;
+        }
     </script>
-
-
 </body>
 </html>
