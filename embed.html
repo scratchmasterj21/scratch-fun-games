@@ -5,44 +5,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Scratch Fun Games</title>
     <style>
-        iframe {
+    iframe {
             width: 70vw;
             height: 70vh;
             border: none;
         }
+      
+      .centering {
+                display:  block;
 
-        .centering {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            text-align: center;
-        }
-
+        justify-content: center; /* Center horizontally */
+        align-items: center; /* Center vertically */
+      }
+        /* Basic Styles */
         body {
             margin: 0;
             font-family: Arial, sans-serif;
         }
-
-        input, button {
-            padding: 10px;
-            margin: 5px;
-            font-size: 16px;
-        }
-
         nav {
             background-color: #2c3e50;
             padding: 10px 20px;
             display: flex;
-            justify-content: center;
+            justify-content: center; /* Aligns items to the right */
         }
-
         nav a, .dropbtn {
             color: white;
             text-decoration: none;
             margin: 0 10px;
             font-size: 16px;
             cursor: pointer;
+        }
+
+        /* Dropdown Styles */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #34495e;
+            min-width: 160px;
+            z-index: 1;
+        }
+        .dropdown-content a {
+            color: white;
+            padding: 10px 15px;
+            display: block;
+            text-decoration: none;
+        }
+        .dropdown-content a:hover {
+            background-color: #1abc9c;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
         }
     </style>
 </head>
@@ -223,23 +239,24 @@ case "rush":
 
             const finalEmbedSrc = `${embedSrc}&username=${encodeURIComponent(username)}`;
             contentDiv.innerHTML = `
-                <iframe src="${finalEmbedSrc}" allowtransparency="true" allowfullscreen></iframe>
-                <p>Min Player: ${minPlayer} | Max Players: ${maxPlayer}</p>
-                <p>Controls:</p>
-                <img src="${imgSrcKeyboard}" alt="Keyboard Icon" width="72" height="72" />
+                <div class="centering">
+                <iframe src="${finalEmbedSrc}" allowtransparency="true" allowfullscreen></iframe></div>
+                <div class="centering"><p>Min Player: ${minPlayer} | Max Players: ${maxPlayer}</p></div>
+                <div class="centering"><p>Controls:</p></div>
+                <div class="centering"><img src="${imgSrcKeyboard}" alt="Keyboard Icon" width="72" height="72" />
                 <img src="${imgSrcMouse}" alt="Mouse Icon" width="72" height="72" />
-                <img src="${imgSrcTouch}" alt="Touch Icon" width="72" height="72" />
+                <img src="${imgSrcTouch}" alt="Touch Icon" width="72" height="72" /></div>
             `;
         }
 
         function loadGame() {
             contentDiv.innerHTML = `
-                <iframe src="${embedSrc}" allowtransparency="true" allowfullscreen></iframe>
-                <p>Min Player: ${minPlayer} | Max Players: ${maxPlayer}</p>
-                <p>Controls:</p>
-                <img src="${imgSrcKeyboard}" alt="Keyboard Icon" width="72" height="72" />
+                <div class="centering"><iframe src="${embedSrc}" allowtransparency="true" allowfullscreen></iframe></div>
+                <div class="centering"><p>Min Player: ${minPlayer} | Max Players: ${maxPlayer}</p></div>
+                <div class="centering"><p>Controls:</p></div>
+                <div class="centering"><img src="${imgSrcKeyboard}" alt="Keyboard Icon" width="72" height="72" />
                 <img src="${imgSrcMouse}" alt="Mouse Icon" width="72" height="72" />
-                <img src="${imgSrcTouch}" alt="Touch Icon" width="72" height="72" />
+                <img src="${imgSrcTouch}" alt="Touch Icon" width="72" height="72" /></div>
             `;
         }
     </script>
