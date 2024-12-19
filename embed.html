@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/style.css">
     <title>Scratch Fun Games</title>
+
 </head>
 <body>
     <div id="nav"></div> <!-- Placeholder for the header -->
@@ -17,8 +18,7 @@
             .catch(error => console.error('Error loading the header:', error));
     </script>
 
-    <div id="content" class="centering">
-        <h1>Welcome to Scratch Fun Games!</h1>
+    <div id="content">
     </div>
 
     <script>
@@ -200,7 +200,9 @@ case "rush":
         }
 
         function loadGame() {
-            contentDiv.innerHTML += `
+            contentDiv.innerHTML = `
+                    <div class="centering"><h1>Welcome to Scratch Fun Games!</h1></div>
+
                 <div class="centering"><iframe src="${embedSrc}" allowtransparency="true" allowfullscreen></iframe></div>
                 <div class="centering"><p>Min Player: ${minPlayer} | Max Players: ${maxPlayer}</p></div>
                 <div class="centering"><p>Controls:</p></div>
