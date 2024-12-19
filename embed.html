@@ -44,43 +44,43 @@
             case "taco1":
                 embedSrc = "https://turbowarp.org/1110044171/embed?cloud_host=wss://tide-pushy-consonant.glitch.me";
                 maxPlayer = 8;
-            imgSrcTouch="https://wallpapers.com/images/featured/blank-white-7sn5o1woonmklx1h.jpg"
+                imgSrcTouch="https://wallpapers.com/images/featured/blank-white-7sn5o1woonmklx1h.jpg"
                 break;
             case "taco2":
                 embedSrc = "https://turbowarp.org/1110114426/embed?cloud_host=wss://tide-pushy-consonant.glitch.me";
                 maxPlayer = 8;
-            imgSrcTouch="https://wallpapers.com/images/featured/blank-white-7sn5o1woonmklx1h.jpg"
+                imgSrcTouch="https://wallpapers.com/images/featured/blank-white-7sn5o1woonmklx1h.jpg"
                 break;
             case "taco3":
                 embedSrc = "https://turbowarp.org/1110115133/embed?cloud_host=wss://tide-pushy-consonant.glitch.me";
                 maxPlayer = 8;
-            imgSrcTouch="https://wallpapers.com/images/featured/blank-white-7sn5o1woonmklx1h.jpg"
+                imgSrcTouch="https://wallpapers.com/images/featured/blank-white-7sn5o1woonmklx1h.jpg"
                 break;
             case "minecraftcreative1":
                 embedSrc = "https://turbowarp.org/1112191591/embed?cloud_host=wss://tide-pushy-consonant.glitch.me";
                 maxPlayer = 10;
-            imgSrcTouch="https://wallpapers.com/images/featured/blank-white-7sn5o1woonmklx1h.jpg"
+                imgSrcTouch="https://wallpapers.com/images/featured/blank-white-7sn5o1woonmklx1h.jpg"
                 break;
             case "minecraftcreative2":
                 embedSrc = "https://turbowarp.org/1112196866/embed?cloud_host=wss://tide-pushy-consonant.glitch.me";
                 maxPlayer = 10;
-            imgSrcTouch="https://wallpapers.com/images/featured/blank-white-7sn5o1woonmklx1h.jpg"
+                imgSrcTouch="https://wallpapers.com/images/featured/blank-white-7sn5o1woonmklx1h.jpg"
                 break;
             case "minecraftsurvival1":
                 embedSrc = "https://turbowarp.org/1112195433/embed?cloud_host=wss://tide-pushy-consonant.glitch.me";
                 maxPlayer = 10;
-            imgSrcTouch="https://wallpapers.com/images/featured/blank-white-7sn5o1woonmklx1h.jpg"
+                imgSrcTouch="https://wallpapers.com/images/featured/blank-white-7sn5o1woonmklx1h.jpg"
                 break;
             case "minecraftsurvival2":
                 embedSrc = "https://turbowarp.org/1112196236/embed?cloud_host=wss://tide-pushy-consonant.glitch.me";
                 maxPlayer = 10;
-            imgSrcTouch="https://wallpapers.com/images/featured/blank-white-7sn5o1woonmklx1h.jpg"
+                imgSrcTouch="https://wallpapers.com/images/featured/blank-white-7sn5o1woonmklx1h.jpg"
                 break;
             
             case "terraria":
                 embedSrc = "https://turbowarp.org/1110150944/embed?cloud_host=wss://tide-pushy-consonant.glitch.me";
                 maxPlayer = 8;
-            imgSrcTouch="https://wallpapers.com/images/featured/blank-white-7sn5o1woonmklx1h.jpg"
+                imgSrcTouch="https://wallpapers.com/images/featured/blank-white-7sn5o1woonmklx1h.jpg"
                 break;
             case "appelonline":
                 embedSrc = "https://turbowarp.org/1111153267/embed?cloud_host=wss://tide-pushy-consonant.glitch.me";
@@ -100,15 +100,15 @@
                 embedSrc = "https://turbowarp.org/1110047228/embed?cloud_host=wss://tide-pushy-consonant.glitch.me";
                 minPlayer = 2;
                 maxPlayer = 5;
-            imgSrcTouch="https://wallpapers.com/images/featured/blank-white-7sn5o1woonmklx1h.jpg"
+                imgSrcTouch="https://wallpapers.com/images/featured/blank-white-7sn5o1woonmklx1h.jpg"
                 break;
             case "tag2":
                 embedSrc = "https://turbowarp.org/1112600204/embed?cloud_host=wss://tide-pushy-consonant.glitch.me";
                 minPlayer = 2;
                 maxPlayer = 5;
-            imgSrcTouch="https://wallpapers.com/images/featured/blank-white-7sn5o1woonmklx1h.jpg"
+                imgSrcTouch="https://wallpapers.com/images/featured/blank-white-7sn5o1woonmklx1h.jpg"
                 break;
-case "rush":
+            case "rush":
                 embedSrc = "https://turbowarp.org/1110082316/embed";
                 break;
             case "memory":
@@ -177,8 +177,7 @@ case "rush":
             // For cloud games, prompt for username
           loadCloudGame();
         } else {
-                  const contentDiv = document.getElementById("content");
-
+            const contentDiv = document.getElementById("content");
             // For non-cloud games, embed directly
             loadGame();
         }
@@ -213,7 +212,6 @@ case "rush":
         function loadGame() {
             contentDiv.innerHTML = `
                     <div class="centering"><h1>Welcome to Scratch Fun Games!</h1></div>
-
                 <div class="centering"><iframe src="${embedSrc}" allowtransparency="true" allowfullscreen></iframe></div>
                 <div class="centering"><p>Min Player: ${minPlayer} | Max Players: ${maxPlayer}</p></div>
                 <div class="centering"><p>Controls:</p></div>
