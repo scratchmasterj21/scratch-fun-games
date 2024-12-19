@@ -32,29 +32,70 @@
         }
 
         /* Dropdown Styles */
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: #34495e;
-            min-width: 160px;
-            z-index: 1;
-        }
-        .dropdown-content a {
-            color: white;
-            padding: 10px 15px;
-            display: block;
-            text-decoration: none;
-        }
-        .dropdown-content a:hover {
-            background-color: #1abc9c;
-        }
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
+/* General Dropdown Styles */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropbtn {
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    padding: 8px 16px;
+    text-align: center;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 200px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdown:hover .dropdown-content,
+.dropdown .dropdown-content:hover {
+    display: block;
+}
+
+.dropdown-content a {
+    text-decoration: none;
+    color: black;
+    padding: 8px 12px;
+    display: block;
+}
+
+/* Nested Dropdown Styles */
+.nested-dropdown {
+    position: relative;
+}
+
+.nested-dropbtn {
+    cursor: pointer;
+    display: block;
+    padding: 8px 12px;
+}
+
+.nested-dropdown-content {
+    display: none;
+    position: absolute;
+    left: 100%;
+    top: 0;
+    background-color: #f1f1f1;
+    min-width: 200px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.nested-dropdown:hover .nested-dropdown-content {
+    display: block;
+}
+.nested-dropdown-content a:hover {
+    background-color: #dcdcdc; /* Slightly darker gray for nested items */
+    color: #4CAF50;
+}
     </style>
   <script defer>function toggleDropdown(dropdownId) {
     const dropdown = document.getElementById(dropdownId);
