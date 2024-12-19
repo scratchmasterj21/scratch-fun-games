@@ -222,25 +222,28 @@ case "rush":
             contentDiv.innerHTML += "<h2>No valid game selected!</h2>";
         } else if (cloudGames.includes(game)) {
             // For cloud games, prompt for username
-            contentDiv.innerHTML += `
-                <label for="usernameInput">Enter Your Username:</label>
-                <input type="text" id="usernameInput" placeholder="Enter username" required />
-                <button onclick="loadCloudGame()">Play Game</button>
-            `;
+          loadCloudGame();
         } else {
+                  const contentDiv = document.getElementById("content");
+
             // For non-cloud games, embed directly
             loadGame();
         }
 
         function loadCloudGame() {
-            const username = document.getElementById("usernameInput").value.trim();
-            if (!username) {
-                alert("Please enter a valid username!");
-                return;
-            }
+            let username = "";
+            do {
+                username = prompt("Enter your username to start the game:");
+                if (username === null) {
+                    // User canceled the prompt
+                    return;
+                }
+            } while (!username.trim());
 
             const finalEmbedSrc = `${embedSrc}&username=${encodeURIComponent(username)}`;
             contentDiv.innerHTML = `
+                    <div class="centering"><h1>Welcome to Scratch Fun Games!</h1></div>
+
                 <div class="centering">
                 <iframe src="${finalEmbedSrc}" allowtransparency="true" allowfullscreen></iframe></div>
                 <div class="centering"><p>Min Player: ${minPlayer} | Max Players: ${maxPlayer}</p></div>
@@ -252,7 +255,7 @@ case "rush":
         }
 
         function loadGame() {
-            contentDiv.innerHTML = `
+            contentDiv.innerHTML += `
                 <div class="centering"><iframe src="${embedSrc}" allowtransparency="true" allowfullscreen></iframe></div>
                 <div class="centering"><p>Min Player: ${minPlayer} | Max Players: ${maxPlayer}</p></div>
                 <div class="centering"><p>Controls:</p></div>
