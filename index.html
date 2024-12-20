@@ -29,18 +29,28 @@ window.onclick = function (event) {
     }
 };
     
-      function checkTime() {
-            const currentTime = new Date();
-            const currentHour = currentTime.getHours();
+function checkTime() {
+    function redirectIfClosed() {
+        const currentTime = new Date();
+        const currentHour = currentTime.getHours();
 
-            // Restrict access from 6 PM to 6 AM
-            if (currentHour >= 18 || currentHour < 6) {
-                window.location.href = "closed.html"; // Redirect to a "Closed" page
-            }
+        // Restrict access from 6 PM to 6 AM
+        if (currentHour >= 19 || currentHour < 6) {
+            alert("Access is restricted during nighttime hours (6 PM to 6 AM).");
+            window.location.href = "closed.html"; // Redirect to a "Closed" page
         }
+    }
 
-        // Run the timer check on page load
-        document.addEventListener("DOMContentLoaded", checkTime);
+    // Run the check immediately
+    redirectIfClosed();
+
+    // Continue checking every 1 minute
+    setInterval(redirectIfClosed, 60000); // 60000ms = 1 minute
+}
+
+// Run the timer check on page load
+document.addEventListener("DOMContentLoaded", checkTime);
+
 </script>
 </head>
 <body>
@@ -60,7 +70,7 @@ window.onclick = function (event) {
     <div class="centering">
       
   <img src="https://juniortech.org/wp-content/uploads/2020/09/Scratch-cat-logo-300x300px.png" alt="Scratch Cat Logo" width="300" height="300" ></div>
-    <p style="text-align: center;">Click a game in the dropdown to open it.</p>
+      <p style="text-align: center;">Click a game in the dropdown to open it.</p>
       <p style="text-align: center;">You can now put a nickname when playing cloud games.</p>
       <p style="text-align: center;">Playing time: between 6AM and 6PM everyday.</p>
 
