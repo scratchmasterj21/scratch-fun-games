@@ -5,6 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/style.css">
     <title>Scratch Fun Games</title>
+    <script defer>
+         function checkTime() {
+            const currentTime = new Date();
+            const currentHour = currentTime.getHours();
+
+            // Restrict access from 6 PM to 6 AM
+            if (currentHour >= 18 || currentHour < 6) {
+                window.location.href = "closed.html"; // Redirect to a "Closed" page
+            }
+        }
+
+        // Run the timer check on page load
+        document.addEventListener("DOMContentLoaded", checkTime);
+    </script>
 
 </head>
 <body>

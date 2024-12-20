@@ -28,6 +28,19 @@ window.onclick = function (event) {
         });
     }
 };
+    
+      function checkTime() {
+            const currentTime = new Date();
+            const currentHour = currentTime.getHours();
+
+            // Restrict access from 6 PM to 6 AM
+            if (currentHour >= 18 || currentHour < 6) {
+                window.location.href = "closed.html"; // Redirect to a "Closed" page
+            }
+        }
+
+        // Run the timer check on page load
+        document.addEventListener("DOMContentLoaded", checkTime);
 </script>
 </head>
 <body>
@@ -46,6 +59,8 @@ window.onclick = function (event) {
     <h1 style="text-align: center; margin-top: 30px;">Scratch Fun Games</h1>
     <img src="https://juniortech.org/wp-content/uploads/2020/09/Scratch-cat-logo-300x300px.png" alt="Scratch Cat Logo" width="300" height="300" >
     <p style="text-align: center;">Click a game in the dropdown to open it.</p>
+      <p style="text-align: center;">Click a game in the dropdown to open it.</p>
+
   </div>
 
 </body>
