@@ -6,12 +6,12 @@ const path = require('path');
 const app = express();
 const port = process.env.PORT || 3000;
 
-// Middleware to check time
 app.use((req, res, next) => {
-    const currentHour = new Date().getHours();
+    const currentHour = new Date().toLocaleString('en-US', { timeZone: 'Asia/Tokyo' });
+    const hour = new Date(currentHour).getHours(); // Convert to JST and extract the hour
 
-    // Block access between 6 AM - 6 PM
-    if (currentHour >= 18 && currentHour < 6) {
+    // Block access between 6 AM - 6 PM JST
+    if (hour >= 18 || hour < 6) {
         res.sendFile(path.join(__dirname, 'public/closed.html')); // Serve "closed.html"
     } else {
         next(); // Continue if outside restricted hours
