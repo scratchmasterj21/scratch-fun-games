@@ -23,152 +23,38 @@
     </div>
 
     <script>
-        // Fetch the game parameter from the URL
-        const params = new URLSearchParams(window.location.search);
-        const game = params.get("game");
-
-        let embedSrc = "";
+      
+              let embedSrc = "";
         let imgSrcKeyboard = "https://media.istockphoto.com/id/1745014836/vector/keyboard-icon-vector-illustration.jpg?s=612x612&w=0&k=20&c=LYa0cqdTp_T2CIufUEo1_bI48zhOdasUNkF7iu2qXCc=";
         let imgSrcMouse = "https://cdn4.iconfinder.com/data/icons/computer-58/64/mouse-computer-pointer-control-512.png";
         let imgSrcTouch = "https://cdn-icons-png.flaticon.com/512/10479/10479814.png";
         let maxPlayer = 1;
         let minPlayer = 1;
+      
+              // Fetch the game parameter from the URL
+        const params = new URLSearchParams(window.location.search);
+        const game = params.get("game");
+      
+      // Fetch game configuration from the server
+        async function getGameConfig(game) {
+            try {
+                const response = await fetch(`/api/get-game?game=${game}`);
+                if (!response.ok) throw new Error("Game not found");
 
-        const cloudGames = [
-            "taco1", "taco2", "taco3",
-            "minecraftcreative1", "minecraftcreative2", "minecraftsurvival1", "minecraftsurvival2",
-            "terraria", "appelonline", "mmellee", "simprpg", "tag1", "tag2"
-        ];
+                const config = await response.json();
 
-        // Map games to embed sources and metadata
-        switch (game) {
-            case "taco1":
-                embedSrc = "https://turbowarp.org/1110044171/embed?cloud_host=wss://tide-pushy-consonant.glitch.me";
-                maxPlayer = 8;
-                imgSrcTouch="https://wallpapers.com/images/featured/blank-white-7sn5o1woonmklx1h.jpg"
-                break;
-            case "taco2":
-                embedSrc = "https://turbowarp.org/1110114426/embed?cloud_host=wss://tide-pushy-consonant.glitch.me";
-                maxPlayer = 8;
-                imgSrcTouch="https://wallpapers.com/images/featured/blank-white-7sn5o1woonmklx1h.jpg"
-                break;
-            case "taco3":
-                embedSrc = "https://turbowarp.org/1110115133/embed?cloud_host=wss://tide-pushy-consonant.glitch.me";
-                maxPlayer = 8;
-                imgSrcTouch="https://wallpapers.com/images/featured/blank-white-7sn5o1woonmklx1h.jpg"
-                break;
-            case "minecraftcreative1":
-                embedSrc = "https://turbowarp.org/1112191591/embed?cloud_host=wss://tide-pushy-consonant.glitch.me";
-                maxPlayer = 10;
-                imgSrcTouch="https://wallpapers.com/images/featured/blank-white-7sn5o1woonmklx1h.jpg"
-                break;
-            case "minecraftcreative2":
-                embedSrc = "https://turbowarp.org/1112196866/embed?cloud_host=wss://tide-pushy-consonant.glitch.me";
-                maxPlayer = 10;
-                imgSrcTouch="https://wallpapers.com/images/featured/blank-white-7sn5o1woonmklx1h.jpg"
-                break;
-            case "minecraftsurvival1":
-                embedSrc = "https://turbowarp.org/1112195433/embed?cloud_host=wss://tide-pushy-consonant.glitch.me";
-                maxPlayer = 10;
-                imgSrcTouch="https://wallpapers.com/images/featured/blank-white-7sn5o1woonmklx1h.jpg"
-                break;
-            case "minecraftsurvival2":
-                embedSrc = "https://turbowarp.org/1112196236/embed?cloud_host=wss://tide-pushy-consonant.glitch.me";
-                maxPlayer = 10;
-                imgSrcTouch="https://wallpapers.com/images/featured/blank-white-7sn5o1woonmklx1h.jpg"
-                break;
-            
-            case "terraria":
-                embedSrc = "https://turbowarp.org/1110150944/embed?cloud_host=wss://tide-pushy-consonant.glitch.me";
-                maxPlayer = 8;
-                imgSrcTouch="https://wallpapers.com/images/featured/blank-white-7sn5o1woonmklx1h.jpg"
-                break;
-            case "appelonline":
-                embedSrc = "https://turbowarp.org/1111153267/embed?cloud_host=wss://tide-pushy-consonant.glitch.me";
-                maxPlayer = 2;
-                break;
-            case "mmellee":
-                embedSrc = "https://turbowarp.org/1111154392/embed?cloud_host=wss://tide-pushy-consonant.glitch.me";
-                minPlayer = 2;
-                maxPlayer = 10;
-                break;
-            case "simprpg":
-                embedSrc = "https://turbowarp.org/1111612005/embed?cloud_host=wss://tide-pushy-consonant.glitch.me";
-                minPlayer = 2;
-                maxPlayer = 6;
-                break;
-            case "tag1":
-                embedSrc = "https://turbowarp.org/1110047228/embed?cloud_host=wss://tide-pushy-consonant.glitch.me";
-                minPlayer = 2;
-                maxPlayer = 5;
-                imgSrcTouch="https://wallpapers.com/images/featured/blank-white-7sn5o1woonmklx1h.jpg"
-                break;
-            case "tag2":
-                embedSrc = "https://turbowarp.org/1112600204/embed?cloud_host=wss://tide-pushy-consonant.glitch.me";
-                minPlayer = 2;
-                maxPlayer = 5;
-                imgSrcTouch="https://wallpapers.com/images/featured/blank-white-7sn5o1woonmklx1h.jpg"
-                break;
-            case "rush":
-                embedSrc = "https://turbowarp.org/1110082316/embed";
-                break;
-            case "memory":
-                embedSrc = "https://turbowarp.org/1110082136/embed";
-                break;
-            case "phantom":
-                embedSrc = "https://turbowarp.org/1110101171/embed";
-                break;
-            case "scratchy2":
-                embedSrc = "https://turbowarp.org/1110102127/embed"; // Replace with actual link
-                break;
-            case "geometry":
-                embedSrc = "https://turbowarp.org/1110115588/embed";
-                break;
-            case "ballphy":
-                embedSrc = "https://turbowarp.org/1110116765/embed";
-                break;
-            case "mario":
-                embedSrc = "https://turbowarp.org/1110136854/embed";
-                imgSrcTouch="https://wallpapers.com/images/featured/blank-white-7sn5o1woonmklx1h.jpg"
+                // Assign variables just like the original switch case
+                embedSrc = config.embedSrc || "";
+                maxPlayer = config.maxPlayer || 0;
+                minPlayer = config.minPlayer || 0;
+                imgSrcTouch = config.imgSrcTouch || imgSrcTouch;
 
-                break;
-            case "evan":
-                embedSrc = "https://turbowarp.org/1111611933/embed";
-                imgSrcTouch="https://wallpapers.com/images/featured/blank-white-7sn5o1woonmklx1h.jpg"
 
-                break;
-            case "gettingover":
-                embedSrc = "https://turbowarp.org/1111640053/embed";
-
-                break;
-            case "plantvszombie":
-                embedSrc = "https://turbowarp.org/1111668077/embed";
-                break;
-            case "magiccat1":
-                embedSrc = "https://turbowarp.org/1111673953/embed";
-                break;
-            case "magiccat2":
-                embedSrc = "https://turbowarp.org/1111673729/embed";
-                break;
-            case "extremeparking":
-                embedSrc = "https://turbowarp.org/1112081449/embed";
-                imgSrcTouch="https://wallpapers.com/images/featured/blank-white-7sn5o1woonmklx1h.jpg"
-                break;
-          case "paperminecraft":
-                embedSrc = "https://turbowarp.org/1112518406/embed";
-                imgSrcTouch="https://wallpapers.com/images/featured/blank-white-7sn5o1woonmklx1h.jpg"
-                break;
-
-          case "tetris":
-                embedSrc = "https://turbowarp.org/1112587686/embed";
-                imgSrcTouch="https://wallpapers.com/images/featured/blank-white-7sn5o1woonmklx1h.jpg"
-                break;
-            default:
-                document.write("<h2>No valid game selected!</h2>");
-                break;
-
+            } catch (error) {
+                console.error("Error:", error);
+                document.body.innerHTML = "<h2>Failed to load game!</h2>";
+            }
         }
-
         // Render the game container
         const contentDiv = document.getElementById("content");
 
