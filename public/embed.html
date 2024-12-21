@@ -30,7 +30,12 @@
         let imgSrcTouch = "https://cdn-icons-png.flaticon.com/512/10479/10479814.png";
         let maxPlayer = 1;
         let minPlayer = 1;
-      
+              const cloudGames = [
+            "taco1", "taco2", "taco3",
+            "minecraftcreative1", "minecraftcreative2", "minecraftsurvival1", "minecraftsurvival2",
+            "terraria", "appelonline", "mmellee", "simprpg", "tag1", "tag2"
+        ];
+
               // Fetch the game parameter from the URL
         const params = new URLSearchParams(window.location.search);
         const game = params.get("game");
@@ -45,8 +50,8 @@
 
                 // Assign variables just like the original switch case
                 embedSrc = config.embedSrc || "";
-                maxPlayer = config.maxPlayer || 0;
-                minPlayer = config.minPlayer || 0;
+                maxPlayer = config.maxPlayer || 1;
+                minPlayer = config.minPlayer || 1;
                 imgSrcTouch = config.imgSrcTouch || imgSrcTouch;
 
 
@@ -55,19 +60,25 @@
                 document.body.innerHTML = "<h2>Failed to load game!</h2>";
             }
         }
-        // Render the game container
-        const contentDiv = document.getElementById("content");
+   async function loadContent() {
+      const contentDiv = document.getElementById("content");
 
-        if (!embedSrc) {
-            contentDiv.innerHTML += "<h2>No valid game selected!</h2>";
-        } else if (cloudGames.includes(game)) {
-            // For cloud games, prompt for username
-          loadCloudGame();
-        } else {
-            const contentDiv = document.getElementById("content");
-            // For non-cloud games, embed directly
-            loadGame();
-        }
+            // Check if 'game' parameter is missing
+            if (!game) {
+                contentDiv.innerHTML = "<h2>No valid game selected!</h2>";
+                return;
+            }
+
+            // Fetch game configuration
+            await getGameConfig(game); // WAIT for the fetch to complete
+
+            // Handle cloud games
+            if (cloudGames.includes(game)) {
+                loadCloudGame();
+            } else {
+                loadGame();
+            }
+   }
 
         function loadCloudGame() {
             let username = "";
@@ -84,6 +95,8 @@
         }
       
         function finalEmbedding(finalEmbedSrc) {
+                      const contentDiv = document.getElementById("content");
+
                 contentDiv.innerHTML = `
                     <div class="centering"><h1>Welcome to Scratch Fun Games!</h1></div>
 
@@ -97,6 +110,8 @@
         }
 
         function loadGame() {
+                      const contentDiv = document.getElementById("content");
+
             contentDiv.innerHTML = `
                     <div class="centering"><h1>Welcome to Scratch Fun Games!</h1></div>
                 <div class="centering"><iframe src="${embedSrc}" allowtransparency="true" allowfullscreen></iframe></div>
@@ -107,6 +122,9 @@
                 <img src="${imgSrcTouch}" alt="Touch Icon" width="72" height="72" /></div>
             `;
         }
+      
+        loadContent();
+
     </script>
 </body>
 </html>
