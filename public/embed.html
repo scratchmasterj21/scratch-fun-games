@@ -39,7 +39,8 @@
               // Fetch the game parameter from the URL
         const params = new URLSearchParams(window.location.search);
         const game = params.get("game");
-      
+      window.history.pushState({}, '', window.location.pathname);
+
       // Fetch game configuration from the server
         async function getGameConfig(game) {
             try {
