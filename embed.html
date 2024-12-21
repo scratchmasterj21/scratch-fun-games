@@ -13,7 +13,6 @@ function checkTime() {
 
         // Restrict access from 6 PM to 6 AM
         if (currentHour >= 19 || currentHour < 6) {
-            alert("Access is restricted during nighttime hours (6 PM to 6 AM).");
             window.location.href = "closed.html"; // Redirect to a "Closed" page
         }
     }

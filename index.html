@@ -36,7 +36,6 @@ function checkTime() {
 
         // Restrict access from 6 PM to 6 AM
         if (currentHour >= 19 || currentHour < 6) {
-            alert("Access is restricted during nighttime hours (6 PM to 6 AM).");
             window.location.href = "closed.html"; // Redirect to a "Closed" page
         }
     }
@@ -73,8 +72,8 @@ document.addEventListener("DOMContentLoaded", checkTime);
             <p style="text-align: center;"><b>How to use:</b></p>
 
       <p style="text-align: center;">Click a game in the dropdown to open it.</p>
-      <p style="text-align: center;">You can now put a nickname when playing cloud games.</p>
-      <p style="text-align: center;">Playing time is between 6AM and 6PM everyday.</p>
+      <p style="text-align: center;">You can now put a <b>nickname</b> when playing cloud games.</p>
+      <p style="text-align: center;">Playing time is between <b>6AM</b> and <b>6PM</b> everyday.</p>
 
   </div>
 
