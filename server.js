@@ -1,3 +1,5 @@
+process.env.TZ = 'Asia/Tokyo'; // Set timezone to Japan Time
+
 const express = require('express');
 const path = require('path');
 
@@ -9,7 +11,7 @@ app.use((req, res, next) => {
     const currentHour = new Date().getHours();
 
     // Block access between 6 AM - 6 PM
-    if (currentHour >= 6 && currentHour < 18) {
+    if (currentHour >= 18 && currentHour < 6) {
         res.sendFile(path.join(__dirname, 'public/closed.html')); // Serve "closed.html"
     } else {
         next(); // Continue if outside restricted hours

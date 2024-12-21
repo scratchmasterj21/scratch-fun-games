@@ -4,29 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Site Closed</title>
-     <script defer>
-  function checkTime() {
-    function redirectIfClosed() {
-        const currentTime = new Date();
-        const currentHour = currentTime.getHours();
 
-        // Restrict access from 6 PM to 6 AM
-        if (currentHour <= 19 || currentHour > 6) {
-            window.location.href = "./"; // Redirect to a "Closed" page
-        }
-    }
-
-    // Run the check immediately
-    redirectIfClosed();
-
-    // Continue checking every 1 minute
-    setInterval(redirectIfClosed, 60000); // 60000ms = 1 minute
-}
-
-// Run the timer check on page load
-document.addEventListener("DOMContentLoaded", checkTime);
-  
-  </script>
     <style>
         body {
             display: flex;
