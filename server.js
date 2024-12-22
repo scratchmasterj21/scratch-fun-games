@@ -7,16 +7,26 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 app.use((req, res, next) => {
-    const currentHour = new Date().toLocaleString('en-US', { timeZone: 'Asia/Tokyo' });
-    const hour = new Date(currentHour).getHours(); // Convert to JST and extract the hour
+    const checkAccess = () => {
+        const currentHour = new Date().toLocaleString('en-US', { timeZone: 'Asia/Tokyo' });
+        const hour = new Date(currentHour).getHours(); // Convert to JST and extract the hour
 
-    // Block access between 6 AM - 6 PM JST
-    if (hour >= 18 || hour < 6) {
+        // Block access between 6 AM - 6 PM JST
+        return hour >= 14 || hour < 6;
+    };
+
+    // Send status for periodic checks
+    if (req.path === '/check-access') {
+        return res.json({ accessAllowed: !checkAccess() });
+    }
+
+    if (checkAccess()) {
         res.sendFile(path.join(__dirname, 'public/closed.html')); // Serve "closed.html"
     } else {
         next(); // Continue if outside restricted hours
     }
 });
+
 
 // Game configuration stored server-side
 function getGame(game) {
