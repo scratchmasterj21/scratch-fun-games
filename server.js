@@ -12,7 +12,7 @@ app.use((req, res, next) => {
         const hour = new Date(currentHour).getHours(); // Convert to JST and extract the hour
 
         // Block access between 6 AM - 6 PM JST
-        return hour >= 14 || hour < 6;
+        return hour >= 16 || hour < 6;
     };
 
     // Send status for periodic checks
