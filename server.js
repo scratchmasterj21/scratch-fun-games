@@ -60,7 +60,7 @@ app.use((req, res, next) => {
     if (checkAccess()) {
         res.sendFile(path.join(__dirname, 'public/closed.html')); // Serve "closed.html"
     } else {
-        next(); // Continue if outside restricted hours
+        next();
     }
 });
 
