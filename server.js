@@ -2,31 +2,45 @@ process.env.TZ = 'Asia/Tokyo'; // Set timezone to Japan Time
 
 const express = require('express');
 const path = require('path');
+const session = require('express-session');
 
 const app = express();
 const port = process.env.PORT || 3000;
 
+app.use(session({
+    secret: '7cb122ba7ae25028dc4258db1a91c98398471ead4ceb1265874a703f6eaa6b1f85a8d968bb3927bcf320812a27cb38a2ef57a73e7c33817f3eaed78e5b4b7ca5',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false } // Set to true if using HTTPS
+}));
+
+
+// Middleware to check access
 app.use((req, res, next) => {
-    const checkAccess = () => {
-        const currentHour = new Date().toLocaleString('en-US', { timeZone: 'Asia/Tokyo' });
-        const hour = new Date(currentHour).getHours(); // Convert to JST and extract the hour
+  const isBlockedTime = () => {
+    const now = new Date().toLocaleString('en-US', { timeZone: 'Asia/Tokyo' });
+    const time = new Date(now); // Convert to JST time
+    const hour = time.getHours();   // Extract hours
+    const minute = time.getMinutes(); // Extract minutes
 
-        // Block access between 6 AM - 6 PM JST
-        return hour >= 18 || hour < 6;
-    };
+    // Block access between 6:00 AM - 6:30 PM JST
+    return (hour > 6 && hour < 18) || (hour === 18 && minute <= 30); // Example: includes 6:30 PM cutoff
+   };
 
-    // Send status for periodic checks
-    if (req.path === '/check-access') {
-        return res.json({ accessAllowed: !checkAccess() });
+
+    // Check if the session is already blocked
+    if (req.session.blocked) {
+        return res.sendFile(path.join(__dirname, 'public/closed.html'));
     }
 
-    if (checkAccess()) {
-        res.sendFile(path.join(__dirname, 'public/closed.html')); // Serve "closed.html"
-    } else {
-        next(); // Continue if outside restricted hours
+    // Re-evaluate time restrictions
+    if (isBlockedTime()) {
+        req.session.blocked = true; // Set session as blocked
+        return res.sendFile(path.join(__dirname, 'public/closed.html'));
     }
+
+    next();
 });
-
 
 // Game configuration stored server-side
 function getGame(game) {
