@@ -43,13 +43,18 @@ app.use((req, res, next) => {
 
 app.use((req, res, next) => {
     const checkAccess = () => {
-        const now = new Date().toLocaleString('en-US', { timeZone: 'Asia/Tokyo' });
-        const time = new Date(now);
-        const hour = time.getHours();   // JST Hour
-        const minute = time.getMinutes(); // JST Minute
+   const now = new Date().toLocaleString('en-US', { timeZone: 'Asia/Tokyo' });
+    const time = new Date(now);
+    const hour = time.getHours();   // JST Hour
+    const minute = time.getMinutes(); // JST Minute
 
-        // Block access between 6 AM - 6 PM JST
-        return (hour > 18 && hour < 6) || (hour === 18 && minute <= 30);
+    // Block access from 6 PM to 6 AM, and from 11 AM to 2 PM
+    const blockedTime = (
+        (hour >= 18 || hour < 6) || // 6 PM to 6 AM
+        (hour >= 11 && hour < 14)   // 11 AM to 2 PM
+    );
+
+    return blockedTime;
     };
 
     // Send status for periodic checks
