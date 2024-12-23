@@ -17,16 +17,13 @@ app.use(session({
 
 // Middleware to check access
 app.use((req, res, next) => {
-  const isBlockedTime = () => {
-    const now = new Date().toLocaleString('en-US', { timeZone: 'Asia/Tokyo' });
-    const time = new Date(now); // Convert to JST time
-    const hour = time.getHours();   // Extract hours
-    const minute = time.getMinutes(); // Extract minutes
+    const isBlockedTime = () => {
+        const currentHour = new Date().toLocaleString('en-US', { timeZone: 'Asia/Tokyo' });
+        const hour = new Date(currentHour).getHours(); // JST Hour
 
-    // Block access between 6:00 AM - 6:30 PM JST
-    return (hour > 6 && hour < 18) || (hour === 18 && minute <= 30); // Example: includes 6:30 PM cutoff
-   };
-
+        // Block access between 6 AM - 6 PM JST
+        return hour >= 14 || hour < 6;
+    };
 
     // Check if the session is already blocked
     if (req.session.blocked) {
