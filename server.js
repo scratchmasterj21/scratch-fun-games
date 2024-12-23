@@ -18,11 +18,13 @@ app.use(session({
 // Middleware to check access
 app.use((req, res, next) => {
     const isBlockedTime = () => {
-        const currentHour = new Date().toLocaleString('en-US', { timeZone: 'Asia/Tokyo' });
-        const hour = new Date(currentHour).getHours(); // JST Hour
+        const now = new Date().toLocaleString('en-US', { timeZone: 'Asia/Tokyo' });
+        const time = new Date(now);
+        const hour = time.getHours();   // JST Hour
+        const minute = time.getMinutes(); // JST Minute
 
         // Block access between 6 AM - 6 PM JST
-        return hour >= 14 || hour < 6;
+        return (hour > 18 && hour < 6) || (hour === 18 && minute <= 30);
     };
 
     // Check if the session is already blocked
@@ -38,6 +40,30 @@ app.use((req, res, next) => {
 
     next();
 });
+
+app.use((req, res, next) => {
+    const checkAccess = () => {
+        const now = new Date().toLocaleString('en-US', { timeZone: 'Asia/Tokyo' });
+        const time = new Date(now);
+        const hour = time.getHours();   // JST Hour
+        const minute = time.getMinutes(); // JST Minute
+
+        // Block access between 6 AM - 6 PM JST
+        return (hour > 18 && hour < 6) || (hour === 18 && minute <= 30);
+    };
+
+    // Send status for periodic checks
+    if (req.path === '/check-access') {
+        return res.json({ accessAllowed: !checkAccess() });
+    }
+
+    if (checkAccess()) {
+        res.sendFile(path.join(__dirname, 'public/closed.html')); // Serve "closed.html"
+    } else {
+        next(); // Continue if outside restricted hours
+    }
+});
+
 
 // Game configuration stored server-side
 function getGame(game) {
