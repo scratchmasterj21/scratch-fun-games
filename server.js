@@ -18,13 +18,18 @@ app.use(session({
 // Middleware to check access
 app.use((req, res, next) => {
     const isBlockedTime = () => {
-        const now = new Date().toLocaleString('en-US', { timeZone: 'Asia/Tokyo' });
-        const time = new Date(now);
-        const hour = time.getHours();   // JST Hour
-        const minute = time.getMinutes(); // JST Minute
+   const now = new Date().toLocaleString('en-US', { timeZone: 'Asia/Tokyo' });
+    const time = new Date(now);
+    const hour = time.getHours();   // JST Hour
+    const minute = time.getMinutes(); // JST Minute
 
-        // Block access between 6 AM - 6 PM JST
-        return (hour > 18 && hour < 6) || (hour === 18 && minute <= 30);
+    // Block access from 6 PM to 6 AM, and from 11 AM to 2 PM
+    const blockedTime = (
+        (hour >= 18 || hour < 6) || // 6 PM to 6 AM
+        (hour >= 11 && hour < 14)   // 11 AM to 2 PM
+    );
+
+    return blockedTime;
     };
 
     // Check if the session is already blocked
@@ -73,15 +78,15 @@ app.use((req, res, next) => {
 // Game configuration stored server-side
 function getGame(game) {
     const games = {
-   "taco1": { id: "1110044171", maxPlayer: 8 },
-        "taco2": { id: "1110114426", maxPlayer: 8 },
-        "taco3": { id: "1110115133", maxPlayer: 8 },
-        "minecraftcreative1": { id: "1112191591", maxPlayer: 10 },
-        "minecraftcreative2": { id: "1112196866", maxPlayer: 10 },
-        "minecraftsurvival1": { id: "1112195433", maxPlayer: 10 },
-        "minecraftsurvival2": { id: "1112196236", maxPlayer: 10 },
-        "terraria": { id: "1110150944", maxPlayer: 8 },
-        "appelonline": { id: "1111153267", maxPlayer: 2 },
+   "taco1": { id: "1110044171", maxPlayer: 8, gameName: "Taco Server 1" },
+        "taco2": { id: "1110114426", maxPlayer: 8, gameName: "Taco Server 2"  },
+        "taco3": { id: "1110115133", maxPlayer: 8, gameName: "Taco Server 3"  },
+        "minecraftcreative1": { id: "1112191591", maxPlayer: 10, gameName: "Minecraft Creative Server 1"  },
+        "minecraftcreative2": { id: "1112196866", maxPlayer: 10, gameName: "Minecraft Creative Server 2"   },
+        "minecraftsurvival1": { id: "1112195433", maxPlayer: 10, gameName: "Minecraft Survival Server 1"   },
+        "minecraftsurvival2": { id: "1112196236", maxPlayer: 10, gameName: "Minecraft Survival Server 2"  },
+        "terraria": { id: "1110150944", maxPlayer: 8, gameName: "Terraria Server 1"   },
+        "appelonline": { id: "1111153267", maxPlayer: 2, gameName: "Appel Online"   },
         "mmellee": { id: "1111154392", minPlayer: 2, maxPlayer: 10 },
         "simprpg": { id: "1111612005", minPlayer: 2, maxPlayer: 6 },
         "tag1": { id: "1110047228", minPlayer: 2, maxPlayer: 5 },
@@ -111,7 +116,8 @@ function getGame(game) {
             embedSrc: `https://turbowarp.org/${data.id}/embed?cloud_host=wss://tide-pushy-consonant.glitch.me`,
             maxPlayer: data.maxPlayer || null,
             minPlayer: data.minPlayer || null,
-            imgSrcTouch: defaultImg
+            imgSrcTouch: defaultImg,
+            games: data.gameName
         };
     } else {
         return null;

@@ -39,6 +39,7 @@
             "minecraftcreative1", "minecraftcreative2", "minecraftsurvival1", "minecraftsurvival2",
             "terraria", "appelonline", "mmellee", "simprpg", "tag1", "tag2"
         ];
+        let games ="";
 
               // Fetch the game parameter from the URL
         const params = new URLSearchParams(window.location.search);
@@ -57,6 +58,7 @@
                 maxPlayer = config.maxPlayer || 1;
                 minPlayer = config.minPlayer || 1;
                 imgSrcTouch = config.imgSrcTouch || imgSrcTouch;
+                games = config.games;
 
 
             } catch (error) {
@@ -102,7 +104,7 @@
                       const contentDiv = document.getElementById("content");
 
                 contentDiv.innerHTML = `
-                    <div class="centering"><h1>Welcome to Scratch Fun Games!</h1></div>
+                    <div class="centering"><h1>${games}</h1></div>
 
                 <div class="centering"><p>
                 <iframe src="${finalEmbedSrc}" allowtransparency="true" allowfullscreen></iframe></div>
@@ -117,7 +119,7 @@
                       const contentDiv = document.getElementById("content");
 
             contentDiv.innerHTML = `
-                    <div class="centering"><h1>Welcome to Scratch Fun Games!</h1></div>
+                    <div class="centering"><h1>${games}</h1></div>
                 <div class="centering"><iframe src="${embedSrc}" allowtransparency="true" allowfullscreen></iframe></div>
                 <div class="centering"><p>Min Player: ${minPlayer} | Max Players: ${maxPlayer}</p></div>
                 <div class="centering"><p>Controls:</p></div>
