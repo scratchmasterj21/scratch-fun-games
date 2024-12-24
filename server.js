@@ -14,38 +14,6 @@ app.use(session({
     cookie: { secure: false } // Set to true if using HTTPS
 }));
 
-
-// Middleware to check access
-app.use((req, res, next) => {
-    const isBlockedTime = () => {
-   const now = new Date().toLocaleString('en-US', { timeZone: 'Asia/Tokyo' });
-    const time = new Date(now);
-    const hour = time.getHours();   // JST Hour
-    const minute = time.getMinutes(); // JST Minute
-
-    // Block access from 6 PM to 6 AM, and from 11 AM to 2 PM
-    const blockedTime = (
-        (hour >= 18 || hour < 6) || // 6 PM to 6 AM
-        (hour >= 11 && hour < 14)   // 11 AM to 2 PM
-    );
-
-    return blockedTime;
-    };
-
-    // Check if the session is already blocked
-    if (req.session.blocked) {
-        return res.sendFile(path.join(__dirname, 'public/closed.html'));
-    }
-
-    // Re-evaluate time restrictions
-    if (isBlockedTime()) {
-        req.session.blocked = true; // Set session as blocked
-        return res.sendFile(path.join(__dirname, 'public/closed.html'));
-    }
-
-    next();
-});
-
 app.use((req, res, next) => {
     const checkAccess = () => {
    const now = new Date().toLocaleString('en-US', { timeZone: 'Asia/Tokyo' });
