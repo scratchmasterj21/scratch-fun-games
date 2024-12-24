@@ -23,7 +23,7 @@ app.use((req, res, next) => {
 
     // Block access from 6 PM to 6 AM, and from 11 AM to 2 PM
     const blockedTime = (
-        (hour >= 18 || hour < 6) || // 6 PM to 6 AM
+        (hour >= 21 || hour < 6) || // 6 PM to 6 AM
         (hour >= 11 && hour < 14)   // 11 AM to 2 PM
     );
 
