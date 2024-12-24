@@ -81,7 +81,7 @@ function getGame(game) {
     if (games[game]) {
         const data = games[game];
         return {
-            embedSrc: `https://turbowarp.org/${data.id}/embed?cloud_host=wss://tide-pushy-consonant.glitch.me`,
+            embedSrc: `https://turbowarp.org/${data.id}/embed?cloud_host=wss://ws://3.87.212.31:3000/`,
             maxPlayer: data.maxPlayer || null,
             minPlayer: data.minPlayer || null,
             imgSrcTouch: defaultImg,
