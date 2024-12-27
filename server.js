@@ -21,11 +21,12 @@ app.use((req, res, next) => {
     const hour = time.getHours();   // JST Hour
     const minute = time.getMinutes(); // JST Minute
 
-    // Block access from 6 PM to 6 AM, and from 11 AM to 2 PM
-    const blockedTime = (
-        (hour >= 21 || hour < 6) || // 6 PM to 6 AM
-        (hour >= 11 && hour < 14)   // 11 AM to 2 PM
-    );
+ const blockedTime = (
+    (hour >= 21 || hour < 7) || // 9 PM to 7 AM
+    (hour >= 11 && hour < 14) || // 11 AM to 2 PM
+    (hour >= 18 && hour < 19)   // 6 PM to 7 PM
+);
+
 
     return blockedTime;
     };
