@@ -3,9 +3,16 @@ process.env.TZ = 'Asia/Tokyo'; // Set timezone to Japan Time
 const express = require('express');
 const path = require('path');
 const session = require('express-session');
+const cors = require('cors'); // Import CORS
 
 const app = express();
 const port = process.env.PORT || 3000;
+
+app.use(cors({
+  origin: '*', // Allow only your domain
+  methods: ['GET', 'POST'], // Allow GET and POST
+  allowedHeaders: ['Content-Type']
+}));
 
 app.use(session({
     secret: '7cb122ba7ae25028dc4258db1a91c98398471ead4ceb1265874a703f6eaa6b1f85a8d968bb3927bcf320812a27cb38a2ef57a73e7c33817f3eaed78e5b4b7ca5',
@@ -92,6 +99,14 @@ function getGame(game) {
         return null;
     }
 }
+
+// ✅ Fix CORS for API responses
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Methods", "GET, POST");
+    res.header("Access-Control-Allow-Headers", "Content-Type");
+    next();
+});
 
 // API endpoint to get game configuration
 app.get('/api/get-game', (req, res) => {
