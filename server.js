@@ -31,7 +31,7 @@ app.use((req, res, next) => {
  const blockedTime = (
    (hour >= 21 || hour < 7) || // 9 PM to 7 AM
     //  (hour >= 11 && hour < 16) || // 11 AM to 2 PM
-    //(hour >= 18 && hour < 18)   // 6 PM to 7 PM
+    (hour >= 18 && hour < 18)   // 6 PM to 7 PM
 );
 
 
