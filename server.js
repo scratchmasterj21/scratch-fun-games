@@ -28,12 +28,16 @@ app.use((req, res, next) => {
     const hour = time.getHours();   // JST Hour
     const minute = time.getMinutes(); // JST Minute
 
-const blockedTime = !(
-  (hour >= 7 && hour < 11) //||  // Morning play time
+//const blockedTime = !(
+  // (hour >= 7 && hour < 11) //||  // Morning play time
  // (hour >= 14 && hour < 18)// || // Afternoon play time
   //(hour >= 19 && hour < 21)    // Evening play time
-);
+//);
 
+const blockedTime = false
+  // (hour >= 7 && hour < 11) //||  // Morning play time
+ // (hour >= 14 && hour < 18)// || // Afternoon play time
+  //(hour >= 19 && hour < 21)    // Evening play time
 
     return blockedTime;
     };
