@@ -85,7 +85,17 @@ function getGame(game) {
         "magiccat2": { id: "1111673729", gameName: "Magic Cat 2"   },
         "extremeparking": { id: "1112081449", gameName: "Extreme Parking"   },
         "paperminecraft": { id: "1112518406", gameName: "Paper Minecraft"   },
-        "tetris": { id: "1112587686", gameName: "Tetris"   }
+        "tetris": { id: "1112587686", gameName: "Tetris"   },
+        "giftsfromsanta": { id: "1252424630", gameName: "Gifts from Santa"   },
+        "santaclicker": { id: "1252424079", gameName: "Santa Clicker"   },
+        "santadash": { id: "1252423260", gameName: "Santa Dash"   },
+        "fakesanta": { id: "1252423089", gameName: "Fake Santa"   },
+        "santavsrobots": { id: "1252422850", gameName: "Santa Vs Robots"   },
+        "santaadventure": { id: "1252931313", gameName: "Santa Adventure"   },
+        "bouncysanta": { id: "1252931927", gameName: "Bouncy Santa"   },
+        "santatower": { id: "1252349603", gameName: "Santa Tower"   },
+        "snowboardingsanta": { id: "1252932478", gameName: "Snowboarding Santa"   },
+        "santadelivery": { id: "1252933429", gameName: "Santa Delivery"   }
     };
 
     const defaultImg = "https://wallpapers.com/images/featured/blank-white-7sn5o1woonmklx1h.jpg";
