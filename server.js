@@ -68,7 +68,7 @@ function getGame(game) {
         "terraria": { id: "1110150944", maxPlayer: 8, gameName: "Terraria Server 1"   },
         "appelonline": { id: "1111153267", maxPlayer: 2, gameName: "Appel Online"   },
         "mmellee": { id: "1111154392", minPlayer: 2, maxPlayer: 10 , gameName: "Monster Melee"  },
-        "simprpg": { id: "1111612005", minPlayer: 2, maxPlayer: 6 , gameName: "Simple RPG"  },
+        "simprpg": { id: "356929022", minPlayer: 2, maxPlayer: 6 , gameName: "Simple RPG"  },
         "tag1": { id: "1110047228", minPlayer: 2, maxPlayer: 5, gameName: "Tag Server 1"   },
         "tag2": { id: "1112600204", minPlayer: 2, maxPlayer: 5, gameName: "Tag Server 2"   },
         "rush": { id: "1110082316", gameName: "Rush"   },
