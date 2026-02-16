@@ -58,9 +58,10 @@ const blockedTime = !(
 // Game configuration stored server-side
 function getGame(game) {
     const games = {
-   "taco1": { id: "1110044171", maxPlayer: 8, gameName: "Taco Server 1" },
-        "taco2": { id: "1110114426", maxPlayer: 8, gameName: "Taco Server 2"  },
-        "taco3": { id: "1110115133", maxPlayer: 8, gameName: "Taco Server 3"  },
+   // Taco game (disabled; may enable in the future)
+   // "taco1": { id: "1110044171", maxPlayer: 8, gameName: "Taco Server 1" },
+   // "taco2": { id: "1110114426", maxPlayer: 8, gameName: "Taco Server 2"  },
+   // "taco3": { id: "1110115133", maxPlayer: 8, gameName: "Taco Server 3"  },
         "minecraftcreative1": { id: "1112191591", maxPlayer: 10, gameName: "Minecraft Creative Server 1"  },
         "minecraftcreative2": { id: "1112196866", maxPlayer: 10, gameName: "Minecraft Creative Server 2"   },
         "minecraftsurvival1": { id: "1112195433", maxPlayer: 10, gameName: "Minecraft Survival Server 1"   },
