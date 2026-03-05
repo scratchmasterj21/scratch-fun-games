@@ -1,19 +1,19 @@
 function checkAccess() {
-    fetch('/check-access') // Ask the server if access is still allowed
-        .then(response => response.json())
-        .then(data => {
-            if (!data.accessAllowed) { // If blocked, redirect to closed page
-                if (window.location.pathname !== '/closed.html') {
-                    window.location.href = '/closed.html';
+    var url = (typeof CHECKACCESS_URL !== 'undefined' ? CHECKACCESS_URL : '') + '/check-access?userId=scratchfungames&appId=scratchfungames&timezone=Asia/Tokyo';
+    fetch(url)
+        .then(function (response) { return response.json(); })
+        .then(function (data) {
+            if (!data.allowed) {
+                if (window.location.pathname !== '/closed.html' && !window.location.pathname.endsWith('closed.html')) {
+                    window.location.href = '/closed.html' + (data.reason ? '?reason=' + encodeURIComponent(data.reason) : '');
                 }
             } else {
-                // If allowed, reload the page or redirect to home
-                if (window.location.pathname === '/closed.html') {
-                    window.location.href = '/'; // Redirect to the homepage
+                if (window.location.pathname === '/closed.html' || window.location.pathname.endsWith('closed.html')) {
+                    window.location.href = '/';
                 }
             }
         })
-        .catch(err => console.error('Error checking access:', err));
+        .catch(function (err) { return console.error('Error checking access:', err); });
 }
 
 // Check every 30 seconds

@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+  <script src="/config.js"></script>
   <script src="/script.js"></script>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/style.css">
-    <script src="/script.js"></script>
 
     <title>Scratch Fun Games</title>
 
@@ -45,10 +45,11 @@
         const params = new URLSearchParams(window.location.search);
         const game = params.get("game");
 
-      // Fetch game configuration from the server
+      // Fetch game configuration from the checkaccess Worker API
         async function getGameConfig(game) {
             try {
-                const response = await fetch(`/api/get-game?game=${game}`);
+                const apiBase = typeof CHECKACCESS_URL !== 'undefined' ? CHECKACCESS_URL : '';
+                const response = await fetch(`${apiBase}/api/get-game?game=${game}`);
                 if (!response.ok) throw new Error("Game not found");
 
                 const config = await response.json();

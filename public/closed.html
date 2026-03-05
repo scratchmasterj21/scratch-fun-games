@@ -2,52 +2,136 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-     <script>
-  
-  function checkAccess() {
-    fetch('/check-access') // Ask the server if access is still allowed
-        .then(response => response.json())
-        .then(data => {
-            if (!data.accessAllowed) { // If blocked, redirect to closed page
-                if (window.location.pathname !== '/closed.html') {
-                    window.location.href = '/closed.html';
-                }
-            } else {
-                // If allowed, reload the page or redirect to home
-                if (window.location.pathname === '/closed.html') {
-                    window.location.href = '/'; // Redirect to the homepage
-                }
-            }
-        })
-        .catch(err => console.error('Error checking access:', err));
-}
-
-// Check every 30 seconds
-setInterval(checkAccess, 30000);
-</script>
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Site Closed</title>
-
+    <title>Access Denied</title>
+    <script src="/config.js"></script>
     <style>
+        * { box-sizing: border-box; }
         body {
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            background-color: #f9f9f9;
-            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             text-align: center;
         }
-
+        .icon {
+            font-size: 4rem;
+            margin-bottom: 0.5rem;
+        }
         h1 {
-            color: #ff0000;
+            color: #c62828;
+            margin: 0 0 1.5rem;
+            font-size: 1.75rem;
+        }
+        .reason-box {
+            max-width: 420px;
+            width: 100%;
+            padding: 1rem 1.25rem;
+            margin-bottom: 1.5rem;
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            text-align: left;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+        }
+        .reason-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #666;
+            margin-bottom: 0.35rem;
+        }
+        .reason-text {
+            font-size: 1rem;
+            color: #333;
+            line-height: 1.4;
+        }
+        .schedule-box {
+            max-width: 420px;
+            width: 100%;
+            padding: 1rem 1.25rem;
+            margin-bottom: 1.5rem;
+            background: #fafafa;
+            border: 1px solid #eee;
+            border-radius: 8px;
+        }
+        .schedule-text {
+            font-size: 0.95rem;
+            color: #555;
+        }
+        .back-btn {
+            display: inline-block;
+            padding: 0.6rem 1.25rem;
+            background: #1976d2;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+        .back-btn:hover {
+            background: #1565c0;
         }
     </style>
 </head>
 <body>
-    <h1>Site Closed</h1>
-  <p>Playing time is between <b>7AM to 11AM</b>, <b>2PM to 6PM</b> and <b>7PM to 9PM</b> everyday. Please come back during those hours.</p>
+    <div class="icon">🚫</div>
+    <h1>Access Denied</h1>
+
+    <div class="reason-box" id="reason-box">
+        <div class="reason-label">Reason</div>
+        <div class="reason-text" id="reason-text">Checking…</div>
+    </div>
+
+    <div class="schedule-box">
+        <div class="schedule-text">
+            Please message your teacher if you have any questions.
+        </div>
+    </div>
+
+    <a href="/" class="back-btn">🔄 Try Again</a>
+
+    <script>
+        (function () {
+            var baseUrl = typeof CHECKACCESS_URL !== 'undefined' ? CHECKACCESS_URL : '';
+            var checkUrl = baseUrl + '/check-access?userId=scratchfungames&appId=scratchfungames&timezone=Asia/Tokyo';
+            var reasonEl = document.getElementById('reason-text');
+
+            function setReason(text) {
+                reasonEl.textContent = text || 'Outside allowed play hours.';
+            }
+
+            function runCheck() {
+                fetch(checkUrl)
+                    .then(function (r) { return r.json(); })
+                    .then(function (data) {
+                        if (data.allowed) {
+                            window.location.href = '/';
+                            return;
+                        }
+                        setReason(data.reason || null);
+                    })
+                    .catch(function () {
+                        setReason('Unable to check access. Please try again.');
+                    });
+            }
+
+            // Use reason from URL if we were redirected with ?reason=...
+            var params = new URLSearchParams(window.location.search);
+            var urlReason = params.get('reason');
+            if (urlReason) {
+                setReason(decodeURIComponent(urlReason));
+            }
+
+            runCheck();
+            setInterval(runCheck, 30000);
+        })();
+    </script>
 </body>
 </html>
